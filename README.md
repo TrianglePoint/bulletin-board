@@ -1,7 +1,7 @@
 # bulletin-board
 bulletin board project.
 
-# condition
+# requirements
  - client can check the all post.
  - client can check the one post.
  - client can create the post.
@@ -19,3 +19,10 @@ bulletin board project.
  - 客は掲示物が作成できる。
  - 客は掲示物が修正できる。
  - 客は掲示物が削除できる。
+ 
+# design
+## package
+ - org.trianglepoint.post.controller (controller of MVC2)
+ - org.trianglepoint.post.domain (store the data that receive from DB)
+ - org.trianglepoint.post.mapper (connect to DB as mybatis)
+ - org.trianglepoint.post.service (business logic)
