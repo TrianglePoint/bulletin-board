@@ -49,3 +49,12 @@ bulletin board project.
      - configuration
        - source 1.8
        - target 1.8
+       
+## controller
+|       Task       |       URL      | Method | Parameter |        From        | URL move |
+|:----------------:|:--------------:|:------:|:---------:|:------------------:|:--------:|
+| Process register | /post/register |  POST  |    ALL    | Need insert screen |   Move   |
+|     Get post     |    /post/get   |   GET  |    pono   |                    |          |
+|   Get all post   |   /post/list   |   GET  |           |                    |          |
+|  Process modify  |  /post/modify  |  POST  |    ALL    | Need insert screen |   Move   |
+|  Process remove  |  /post/remove  |  POST  |    pono   |                    |   Move   |
