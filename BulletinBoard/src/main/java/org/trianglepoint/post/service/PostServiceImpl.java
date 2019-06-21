@@ -16,8 +16,8 @@ public class PostServiceImpl implements PostService {
 	private PostMapper mapper;
 	
 	@Override
-	public void register(PostVO post) {
-		mapper.insert(post);
+	public boolean register(PostVO post) {
+		return mapper.insert(post) == 1;
 	}
 
 	@Override

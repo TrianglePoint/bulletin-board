@@ -5,7 +5,7 @@ import java.util.List;
 import org.trianglepoint.post.domain.PostVO;
 
 public interface PostMapper {
-	public void insert(PostVO post);
+	public int insert(PostVO post);
 	
 	public PostVO get(Long pono);
 	

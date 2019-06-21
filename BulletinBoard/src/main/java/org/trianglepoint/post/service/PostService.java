@@ -5,7 +5,7 @@ import java.util.List;
 import org.trianglepoint.post.domain.PostVO;
 
 public interface PostService {
-	public void register(PostVO post);
+	public boolean register(PostVO post);
 	
 	public PostVO get(Long pono);
 	

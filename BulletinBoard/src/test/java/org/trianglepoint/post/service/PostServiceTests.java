@@ -30,7 +30,7 @@ public class PostServiceTests {
 		post.setText("Service!");
 		post.setWriter("Server");
 		
-		service.register(post);
+		log.info("REGISTERED? " + service.register(post));
 	}
 	
 	public void testGet() {
