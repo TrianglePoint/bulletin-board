@@ -11,13 +11,14 @@ import lombok.Setter;
 
 @Service
 public class PostServiceImpl implements PostService {
+	final static int SUCCESS = 1;
 	
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
 	
 	@Override
 	public boolean register(PostVO post) {
-		return mapper.insert(post) == 1;
+		return mapper.insert(post) == SUCCESS;
 	}
 
 	@Override
@@ -32,12 +33,12 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public boolean modify(PostVO post) {
-		return mapper.update(post) == 1;
+		return mapper.update(post) == SUCCESS;
 	}
 
 	@Override
 	public boolean remove(Long pono) {
-		return mapper.delete(pono) == 1;
+		return mapper.delete(pono) == SUCCESS;
 	}
 
 }
