@@ -14,9 +14,15 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class PostMapperTests {
+	/**
+	 * @param mapper
+	 */
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
 	
+	/**
+	 * 
+	 */
 	public void testInsert() {
 		PostVO post = new PostVO();
 		post.setTitle("new post");
@@ -28,16 +34,25 @@ public class PostMapperTests {
 		log.info(post);
 	}
 	
+	/**
+	 * 
+	 */
 	public void testGet() {
 		PostVO post = mapper.get(2L);
 		
 		log.info(post);
 	}
 	
+	/**
+	 * 
+	 */
 	public void testGetList() {
 		mapper.getList().forEach(post -> log.info(post));
 	}
 
+	/**
+	 * 
+	 */
 	public void testUpdate() {
 		PostVO post = mapper.get(2L);
 		post.setTitle("HAHA");
@@ -47,6 +62,9 @@ public class PostMapperTests {
 		log.info("UPDATE COUNT : " + mapper.update(post));
 	}
 	
+	/**
+	 * 
+	 */
 	public void testDelete() {
 		log.info("DELETE COUNT : " + mapper.delete(3L));
 	}

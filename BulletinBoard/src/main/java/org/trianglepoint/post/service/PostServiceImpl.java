@@ -13,6 +13,9 @@ import lombok.Setter;
 public class PostServiceImpl implements PostService {
 	final static int SUCCESS = 1;
 	
+	/**
+	 * @param mapper
+	 */
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
 	

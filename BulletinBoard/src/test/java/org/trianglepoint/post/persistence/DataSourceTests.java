@@ -20,12 +20,21 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class DataSourceTests {
 	
+	/**
+	 * @param dataSource
+	 */
 	@Setter(onMethod_ = {@Autowired})
 	private DataSource dataSource;
 	
+	/**
+	 * @param sqlSessionFactory
+	 */
 	@Setter(onMethod_= {@Autowired})
 	private SqlSessionFactory sqlSessionFactory;
 	
+	/**
+	 * Test of access to DB as MyBatis
+	 */
 	@Test
 	public void testMyBatis() {
 		try(SqlSession session = sqlSessionFactory.openSession();

@@ -4,6 +4,12 @@ import java.util.Date;
 
 import lombok.Data;
 
+/**
+ * Method : 
+ *   Constructor,
+ *   getter, setter, equals, canEqual,
+ *   hashCode, toString
+ */
 @Data
 public class PostVO {
 	private Long pono;

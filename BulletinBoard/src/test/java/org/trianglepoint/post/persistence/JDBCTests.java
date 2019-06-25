@@ -20,6 +20,9 @@ public class JDBCTests {
 		}
 	}
 	
+	/**
+	 * Just JDBC access test
+	 */
 	@Test
 	public void testConnection() {
 		

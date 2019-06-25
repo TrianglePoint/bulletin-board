@@ -16,14 +16,23 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class PostServiceTests {
+	/**
+	 * @param service
+	 */
 	@Setter(onMethod_ = @Autowired)
 	private PostService service;
 	
+	/**
+	 * Test of confirm the exist of service
+	 */
 	public void testExist() {
 		log.info(service);
 		assertNotNull(service);
 	}
 	
+	/**
+	 * 
+	 */
 	public void testRegister() {
 		PostVO post = new PostVO();
 		post.setTitle("service T");
@@ -33,14 +42,23 @@ public class PostServiceTests {
 		log.info("REGISTERED? " + service.register(post));
 	}
 	
+	/**
+	 * 
+	 */
 	public void testGet() {
 		log.info(service.get(2L));
 	}
 	
+	/**
+	 * 
+	 */
 	public void testGetList() {
 		service.getList().forEach(post -> log.info(post));
 	}
 	
+	/**
+	 * 
+	 */
 	public void testModify() {
 		PostVO post = service.get(2L);
 		
@@ -52,6 +70,9 @@ public class PostServiceTests {
 		log.info("MODIFIED? " + service.modify(post));
 	}
 	
+	/**
+	 * 
+	 */
 	public void testRemove() {
 		log.info("DELETED? " + service.remove(4L));
 	}

@@ -21,16 +21,25 @@ import lombok.extern.log4j.Log4j;
 	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @Log4j
 public class PostControllerTests {
+	/**
+	 * @param ctx
+	 */
 	@Setter(onMethod_ = @Autowired)
 	private WebApplicationContext ctx;
 	
 	private MockMvc mockMvc;
 	
+	/**
+	 * Setup for web test
+	 */
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void testRegister() throws Exception{
 		String resultPage = 
 				mockMvc.perform(MockMvcRequestBuilders.post("/post/register")
@@ -42,6 +51,9 @@ public class PostControllerTests {
 		log.info(resultPage);
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void testGet() throws Exception{
 		log.info(
 				mockMvc.perform(MockMvcRequestBuilders.get("/post/get")
@@ -49,6 +61,9 @@ public class PostControllerTests {
 				).andReturn().getModelAndView().getModelMap());
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void testList() throws Exception{
 		log.info(
 				mockMvc.perform(MockMvcRequestBuilders.get("/post/list"))
@@ -57,6 +72,9 @@ public class PostControllerTests {
 				.getModelMap());
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void testModify() throws Exception{
 		String resultPage = 
 				mockMvc.perform(MockMvcRequestBuilders.post("/post/modify")
@@ -69,6 +87,9 @@ public class PostControllerTests {
 		log.info(resultPage);
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void testRemove() throws Exception{
 		String resultPage = 
 				mockMvc.perform(MockMvcRequestBuilders.post("/post/remove")
