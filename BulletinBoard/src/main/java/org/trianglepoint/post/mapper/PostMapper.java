@@ -23,7 +23,7 @@ public interface PostMapper {
 	public List<PostVO> getList();
 	
 	/**
-	 * @param post : Request number of post from client
+	 * @param post : ost data from client
 	 * @return : How many change on DB?
 	 */
 	public int update(PostVO post);
