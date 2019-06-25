@@ -23,7 +23,7 @@ public class PostController {
 	private PostService service;
 	
 	/**
-	 * Just return : "/post/register"
+	 * ただ　return : "/post/register"
 	 */
 	@GetMapping("/register")
 	public void register() {
@@ -31,8 +31,8 @@ public class PostController {
 	}
 	
 	/**
-	 * @param post : Post data from client
-	 * @param rttr : Insert the Result of register
+	 * @param post : Clientからのpostデータ 
+	 * @param rttr :　登録の結果を入れる
 	 * @return
 	 */
 	@PostMapping("/register")
@@ -45,8 +45,8 @@ public class PostController {
 	}
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @param model : Insert the post data
+	 * @param pono : Clientからのpostの要望の数字
+	 * @param model : Postデータを入れる
 	 */
 	@GetMapping({"/get", "/modify"})
 	public void get(Long pono, Model model) {
@@ -54,7 +54,7 @@ public class PostController {
 	}
 	
 	/**
-	 * @param model : Insert the post data list
+	 * @param model : Postデータリストを入れる
 	 */
 	@GetMapping("/list")
 	public void list(Model model) {
@@ -62,8 +62,8 @@ public class PostController {
 	}
 	
 	/**
-	 * @param post : Modified post data from client
-	 * @param rttr : Insert the Result of modify
+	 * @param post : Clientからの修正されたpostデータ
+	 * @param rttr :　修正の結果を入れる
 	 * @return
 	 */
 	@PostMapping("/modify")
@@ -76,8 +76,8 @@ public class PostController {
 	}
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @param rttr : Insert the Result of remove
+	 * @param pono : Clientからのpostの要望の数字
+	 * @param rttr : 削除の結果を入れる
 	 * @return
 	 */
 	@PostMapping("/remove")

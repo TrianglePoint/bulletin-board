@@ -33,7 +33,7 @@ public class DataSourceTests {
 	private SqlSessionFactory sqlSessionFactory;
 	
 	/**
-	 * Test of access to DB as MyBatis
+	 * MyBatisでDBに接続するテスト
 	 */
 	@Test
 	public void testMyBatis() {

@@ -21,7 +21,7 @@ public class JDBCTests {
 	}
 	
 	/**
-	 * Just JDBC access test
+	 * ただJDBC接続テスト
 	 */
 	@Test
 	public void testConnection() {

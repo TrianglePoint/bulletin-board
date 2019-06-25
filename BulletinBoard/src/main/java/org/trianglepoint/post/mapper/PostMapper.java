@@ -6,31 +6,31 @@ import org.trianglepoint.post.domain.PostVO;
 
 public interface PostMapper {
 	/**
-	 * @param post : Post data from client
-	 * @return : How many change on DB?
+	 * @param post : Clientからのpostデータ
+	 * @return : DBでどのくらい変わったか？
 	 */
 	public int insert(PostVO post);
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @return : Requested post data
+	 * @param pono : Clientからのpostの要望の数字
+	 * @return : 要望のpostデータ
 	 */
 	public PostVO get(Long pono);
 	
 	/**
-	 * @return : Post data list
+	 * @return : Postデータリスト
 	 */
 	public List<PostVO> getList();
 	
 	/**
-	 * @param post : Request number of post from client
-	 * @return : How many change on DB?
+	 * @param post : Clientからの修正されたpostデータ
+	 * @return : DBでどのくらい変わったか？
 	 */
 	public int update(PostVO post);
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @return : How many change on DB?
+	 * @param pono : Clientからのpostの要望の数字
+	 * @return : DBでどのくらい変わったか？
 	 */
 	public int delete(Long pono);
 }

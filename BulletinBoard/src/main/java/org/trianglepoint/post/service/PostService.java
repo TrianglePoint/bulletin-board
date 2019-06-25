@@ -6,31 +6,31 @@ import org.trianglepoint.post.domain.PostVO;
 
 public interface PostService {
 	/**
-	 * @param post : Post data from client
-	 * @return : success of register?
+	 * @param post : Clientからのpostデータ
+	 * @return : 登録の成功？
 	 */
 	public boolean register(PostVO post);
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @return : Requested post data
+	 * @param pono : Clientからのpostの要望の数字
+	 * @return : 要望のpostデータ
 	 */
 	public PostVO get(Long pono);
 	
 	/**
-	 * @return : Post data list
+	 * @return : Postデータリスト
 	 */
 	public List<PostVO> getList();
 	
 	/**
-	 * @param post : Request number of post from client
-	 * @return : success of modify?
+	 * @param post : Clientからの修正されたpostデータ
+	 * @return : 修正の成功？
 	 */
 	public boolean modify(PostVO post);
 	
 	/**
-	 * @param pono : Request number of post from client
-	 * @return : success of remove?
+	 * @param pono : Clientからのpostの要望の数字
+	 * @return : 削除の成功？
 	 */
 	public boolean remove(Long pono);
 }

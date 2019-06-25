@@ -23,7 +23,7 @@ public class PostServiceTests {
 	private PostService service;
 	
 	/**
-	 * Test of confirm the exist of service
+	 * サービスの存在を確認するテスト
 	 */
 	public void testExist() {
 		log.info(service);

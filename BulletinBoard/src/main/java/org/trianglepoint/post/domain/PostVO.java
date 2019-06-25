@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * Method : 
+ * 関数 : 
  *   Constructor,
  *   getter, setter, equals, canEqual,
  *   hashCode, toString

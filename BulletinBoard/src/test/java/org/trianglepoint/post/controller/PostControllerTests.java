@@ -30,7 +30,7 @@ public class PostControllerTests {
 	private MockMvc mockMvc;
 	
 	/**
-	 * Setup for web test
+	 * ウェブテストのための設定
 	 */
 	@Before
 	public void setup() {
