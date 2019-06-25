@@ -23,7 +23,7 @@ public interface PostService {
 	public List<PostVO> getList();
 	
 	/**
-	 * @param post : Request number of post from client
+	 * @param post : Modified post data from client
 	 * @return : success of modify?
 	 */
 	public boolean modify(PostVO post);
