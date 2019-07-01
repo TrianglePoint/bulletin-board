@@ -17,6 +17,22 @@
     select /*+ INDEX_DESC(tbl_post pk_post) */ * from tbl_post
   </select>
   
+  <select id="getListPaging" resultType="org.trianglepoint.post.domain.PostVO">
+  <![CDATA[
+    select pono, title, text, writer, regdate, updatedate
+	from(
+	  select /*+ INDEX_DESC (tbl_post pk_post) */
+	    rownum rn, pono, title, text, writer, regdate, updatedate
+	  from 
+	    tbl_post
+	  where
+	    rownum <= #{pageNum} * #{amount}
+	)
+	where
+	  rn > (#{pageNum} -1) * #{amount}
+  ]]>
+  </select>
+  
   <update id="update">
     update tbl_post set
     title = #{title},

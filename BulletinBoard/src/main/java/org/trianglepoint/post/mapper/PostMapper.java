@@ -2,6 +2,7 @@ package org.trianglepoint.post.mapper;
 
 import java.util.List;
 
+import org.trianglepoint.post.domain.PageMaster;
 import org.trianglepoint.post.domain.PostVO;
 
 public interface PostMapper {
@@ -21,6 +22,12 @@ public interface PostMapper {
 	 * @return : Post data list
 	 */
 	public List<PostVO> getList();
+
+	/**
+	 * @param pageMaster : Request number of page from client
+	 * @return : Post data list
+	 */
+	public List<PostVO> getListPaging(PageMaster pageMaster);
 	
 	/**
 	 * @param post : Modified post data from client

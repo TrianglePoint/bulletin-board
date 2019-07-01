@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.trianglepoint.post.domain.PageMaster;
 import org.trianglepoint.post.domain.PostVO;
 
 import lombok.Setter;
@@ -48,6 +49,13 @@ public class PostMapperTests {
 	 */
 	public void testGetList() {
 		mapper.getList().forEach(post -> log.info(post));
+	}
+	
+	/**
+	 * 
+	 */
+	public void testGetListPaging() {
+		mapper.getListPaging(new PageMaster()).forEach(post -> log.info(post));
 	}
 
 	/**

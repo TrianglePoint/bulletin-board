@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.trianglepoint.post.domain.PageMaster;
 import org.trianglepoint.post.domain.PostVO;
 import org.trianglepoint.post.service.PostService;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/post/*")
+@Log4j
 public class PostController {
 	
 	/**
@@ -57,8 +60,9 @@ public class PostController {
 	 * @param model : Insert the post data list
 	 */
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list", service.getList());
+	public void list(Model model, PageMaster pageMaster) {
+		log.info(pageMaster);
+		model.addAttribute("list", service.getListPaging(pageMaster));
 	}
 	
 	/**
