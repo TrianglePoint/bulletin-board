@@ -83,4 +83,17 @@ public class PostMapperTests {
 	public void testGetTotal() {
 		log.info("POST COUNT : " + mapper.getTotal());
 	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testSearch() {
+		PageInfo pageInfo = new PageInfo();
+		
+		pageInfo.setType("TXW");
+		pageInfo.setKeyword("new");
+		
+		mapper.getListPaging(pageInfo).forEach(post -> log.info(post));
+	}
 }

@@ -11,6 +11,14 @@ public class PageInfo {
 	private int amount;
 	
 	/**
+	 * title : T
+	 * text : X
+	 * writer : W
+	 */
+	private String type;
+	private String keyword;
+
+	/**
 	 * 
 	 */
 	public PageInfo() {
@@ -24,5 +32,12 @@ public class PageInfo {
 	public PageInfo(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
+	}
+	
+	/**
+	 * @return : Search condition
+	 */
+	public String[] getTypeArr() {
+		return type.split("");
 	}
 }

@@ -18,7 +18,6 @@
   </select>
   
   <select id="getListPaging" resultType="org.trianglepoint.post.domain.PostVO">
-  <![CDATA[
     select pono, title, text, writer, regdate, updatedate
 	from(
 	  select /*+ INDEX_DESC (tbl_post pk_post) */
@@ -26,6 +25,17 @@
 	  from 
 	    tbl_post
 	  where
+	<trim suffix="AND">
+	<trim suffix="OR" suffixOverrides="OR">
+	  <!-- call getTypeArr() -->
+	  <foreach collection="typeArr" item="type">
+	    <if test="type == 'T'.toString()">
+	      title like '%' || #{keyword} || '%'
+	    </if>
+	  </foreach>
+	</trim>
+	</trim>
+  <![CDATA[
 	    rownum <= #{pageNum} * #{amount}
 	)
 	where
