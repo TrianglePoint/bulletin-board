@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.trianglepoint.post.domain.PageMaster;
+import org.trianglepoint.post.domain.PageInfo;
+import org.trianglepoint.post.domain.PageListInfo;
 import org.trianglepoint.post.domain.PostVO;
 import org.trianglepoint.post.service.PostService;
 
@@ -60,9 +61,11 @@ public class PostController {
 	 * @param model : Insert the post data list
 	 */
 	@GetMapping("/list")
-	public void list(Model model, PageMaster pageMaster) {
-		log.info(pageMaster);
-		model.addAttribute("list", service.getListPaging(pageMaster));
+	public void list(Model model, PageInfo pageInfo) {
+		log.info(pageInfo);
+		model.addAttribute("list", service.getListPaging(pageInfo));
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("pageListInfo", new PageListInfo(pageInfo, service.getTotal()));
 	}
 	
 	/**

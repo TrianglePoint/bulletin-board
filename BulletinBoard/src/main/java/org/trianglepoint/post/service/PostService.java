@@ -2,7 +2,7 @@ package org.trianglepoint.post.service;
 
 import java.util.List;
 
-import org.trianglepoint.post.domain.PageMaster;
+import org.trianglepoint.post.domain.PageInfo;
 import org.trianglepoint.post.domain.PostVO;
 
 public interface PostService {
@@ -24,10 +24,10 @@ public interface PostService {
 	public List<PostVO> getList();
 	
 	/**
-	 * @param pageMaster : Request number of page from client
+	 * @param pageInfo : Request number of page from client
 	 * @return : Post data list
 	 */
-	public List<PostVO> getListPaging(PageMaster pageMaster);
+	public List<PostVO> getListPaging(PageInfo pageInfo);
 	
 	/**
 	 * @param post : Modified post data from client
@@ -40,4 +40,9 @@ public interface PostService {
 	 * @return : success of remove?
 	 */
 	public boolean remove(Long pono);
+	
+	/**
+	 * @return : Total page count
+	 */
+	public int getTotal();
 }

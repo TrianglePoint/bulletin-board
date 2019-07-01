@@ -5,6 +5,11 @@
 
 <%@ include file="../includes/header.jsp" %>
 <title>List</title>
+<style>
+  .selected{
+    font-weight: bold;
+  }
+</style>
 <script>
   $(document).ready(function(){
 	$('#register').on('click', function(){
@@ -35,5 +40,16 @@
 </c:forEach>
 </table>
 <button id="register">Register</button>
+
+<!-- Page list -->
+<div>
+  <a href="/post/list?pageNum=<c:out value='${pageListInfo.startPage - 1}'></c:out>">Previous</a>
+<c:forEach var="page" begin="${pageListInfo.startPage}" end="${pageListInfo.endPage}">
+  <a class="${pageInfo.pageNum == page ? 'selected' : ''}" 
+  href="/post/list?pageNum=<c:out value='${page}'></c:out>">${page}</a> 
+</c:forEach>
+  <a href="/post/list?pageNum=<c:out value='${pageListInfo.endPage + 1}'></c:out>">Next</a>
+</div>
+
 </body>
 </html>

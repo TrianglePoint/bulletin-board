@@ -46,4 +46,7 @@
     delete tbl_post where pono = #{pono}
   </delete>
   
+  <select id="getTotal" resultType="int">
+    select count(*) from tbl_post
+  </select>
 </mapper>

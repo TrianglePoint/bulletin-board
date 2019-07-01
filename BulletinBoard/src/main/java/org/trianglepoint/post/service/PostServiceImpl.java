@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.trianglepoint.post.domain.PageMaster;
+import org.trianglepoint.post.domain.PageInfo;
 import org.trianglepoint.post.domain.PostVO;
 import org.trianglepoint.post.mapper.PostMapper;
 
@@ -36,8 +36,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostVO> getListPaging(PageMaster pageMaster) {
-		return mapper.getListPaging(pageMaster);
+	public List<PostVO> getListPaging(PageInfo pageInfo) {
+		return mapper.getListPaging(pageInfo);
 	}
 
 	@Override
@@ -50,5 +50,8 @@ public class PostServiceImpl implements PostService {
 		return mapper.delete(pono) == SUCCESS;
 	}
 
-
+	@Override
+	public int getTotal() {
+		return mapper.getTotal();
+	}
 }

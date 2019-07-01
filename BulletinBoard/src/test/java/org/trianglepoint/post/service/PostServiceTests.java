@@ -76,4 +76,11 @@ public class PostServiceTests {
 	public void testRemove() {
 		log.info("DELETED? " + service.remove(4L));
 	}
+	
+	/**
+	 * 
+	 */
+	public void testGetTotal() {
+		log.info("POST TOTAL in service : " + service.getTotal());
+	}
 }
