@@ -56,16 +56,21 @@ public class PostController {
 	public void get(Long pono, Model model) {
 		model.addAttribute("post", service.get(pono));
 	}
-	
+
 	/**
 	 * @param model : Insert the post data list
+	 * @param pageInfo : Request number of page from client
 	 */
 	@GetMapping("/list")
 	public void list(Model model, PageInfo pageInfo) {
+		PageListInfo pageListInfo = new PageListInfo(pageInfo, service.getTotal());
+		
 		log.info(pageInfo);
+		log.info(pageListInfo);
+		
 		model.addAttribute("list", service.getListPaging(pageInfo));
 		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("pageListInfo", new PageListInfo(pageInfo, service.getTotal()));
+		model.addAttribute("pageListInfo", pageListInfo);
 	}
 	
 	/**

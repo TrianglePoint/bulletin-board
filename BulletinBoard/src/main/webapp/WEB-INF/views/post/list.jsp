@@ -43,12 +43,16 @@
 
 <!-- Page list -->
 <div>
+  <c:if test="${pageListInfo.previous}">
   <a href="/post/list?pageNum=<c:out value='${pageListInfo.startPage - 1}'></c:out>">Previous</a>
+  </c:if>
 <c:forEach var="page" begin="${pageListInfo.startPage}" end="${pageListInfo.endPage}">
   <a class="${pageInfo.pageNum == page ? 'selected' : ''}" 
   href="/post/list?pageNum=<c:out value='${page}'></c:out>">${page}</a> 
 </c:forEach>
+  <c:if test="${pageListInfo.next}">
   <a href="/post/list?pageNum=<c:out value='${pageListInfo.endPage + 1}'></c:out>">Next</a>
+  </c:if>
 </div>
 
 </body>
