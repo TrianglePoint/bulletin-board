@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.trianglepoint.post.mapper.PostMapper">
+  <insert id="insert">
+    insert into tbl_post (pono, title, text, writer)
+    values (seq_post.nextval, #{title}, #{text}, #{writer})
+  </insert>
+  
+  <select id="get" resultType="org.trianglepoint.post.domain.PostVO">
+    select * from tbl_post where pono = #{pono}
+  </select>
+  
+  <select id="getList" resultType="org.trianglepoint.post.domain.PostVO">
+    select /*+ INDEX_DESC(tbl_post pk_post) */ * from tbl_post
+  </select>
+  
+  <update id="update">
+    update tbl_post set
+    title = #{title},
+    text = #{text},
+    writer = #{writer},
+    updateDate = sysdate 
+    where pono = #{pono}
+  </update>
+  
+  <delete id="delete">
+    delete tbl_post where pono = #{pono}
+  </delete>
+  
+</mapper>
