@@ -27,7 +27,7 @@ public interface PostMapper {
 	 * @param pageInfo : Request number of page from client
 	 * @return : Post data list
 	 */
-	public List<PostVO> getListPaging(PageInfo pageInfo);
+	public List<PostVO> getListWithPaging(PageInfo pageInfo);
 	
 	/**
 	 * @param post : Modified post data from client
@@ -42,7 +42,8 @@ public interface PostMapper {
 	public int delete(Long pono);
 	
 	/**
+	 * @param pageInfo : Search condition
 	 * @return : Total page count
 	 */
-	public int getTotal();
+	public int getTotal(PageInfo pageInfo);
 }

@@ -12,9 +12,35 @@
 </style>
 <script>
   $(document).ready(function(){
+	  
 	$('#register').on('click', function(){
 	  location.href = '/post/register';
 	});
+	
+	$('#searchForm input[type="submit"]').on('click', function(e){
+		e.preventDefault();
+		
+		if($('#searchForm input[name="keyword"]').val() == ''){
+			alert('No keyword');
+			return false;
+		}
+		
+		$('#searchForm').submit();
+	});
+	
+	$('#pageList a').on('click', function(e){
+		var hiddenForm = $('#hiddenForm');
+		var input = hiddenForm.find('input[name="pageNum"]');
+		
+		e.preventDefault();
+		
+		input.attr('value', $(this).attr('href'));
+		
+		hiddenForm.attr('action', '/post/list');
+		
+		hiddenForm.submit();
+	});
+	
   });
 </script>
 </head>
@@ -42,18 +68,48 @@
 <button id="register">Register</button>
 
 <!-- Page list -->
-<div>
+<div id="pageList">
   <c:if test="${pageListInfo.previous}">
-  <a href="/post/list?pageNum=<c:out value='${pageListInfo.startPage - 1}'></c:out>">Previous</a>
+  <a href="<c:out value='${pageListInfo.startPage - 1}'></c:out>">Previous</a>
   </c:if>
 <c:forEach var="page" begin="${pageListInfo.startPage}" end="${pageListInfo.endPage}">
-  <a class="${pageInfo.pageNum == page ? 'selected' : ''}" 
-  href="/post/list?pageNum=<c:out value='${page}'></c:out>">${page}</a> 
+  <a class="${pageInfo.pageNum == page ? 'selected' : ''}"
+  href="<c:out value='${page}'></c:out>">${page}</a> 
 </c:forEach>
   <c:if test="${pageListInfo.next}">
-  <a href="/post/list?pageNum=<c:out value='${pageListInfo.endPage + 1}'></c:out>">Next</a>
+  <a href="<c:out value='${pageListInfo.endPage + 1}'></c:out>">Next</a>
   </c:if>
 </div>
+
+<div>
+  <form id="searchForm" action="/post/list">
+    <select name="type">
+      <option value="T" <c:out value="${pageInfo.type == 'T' ? 'selected' : ''}" />>
+        Title
+      </option>
+      <option value="X" <c:out value="${pageInfo.type == 'X' ? 'selected' : ''}" />>
+        Text
+      </option>
+      <option value="W" <c:out value="${pageInfo.type == 'W' ? 'selected' : ''}" />>
+        Writer
+      </option>
+      <option value="TX" <c:out value="${pageInfo.type == 'TX' ? 'selected' : ''}" />>
+        Title + Text
+      </option>
+      <option value="TXW" <c:out value="${pageInfo.type == 'TXW' ? 'selected' : ''}" />>
+        Title + Text + Writer
+      </option>
+    </select>
+    <input type="text" name="keyword" value="<c:out value='${pageInfo.keyword}' />"/>
+    <input type="submit" value="Search" />
+  </form>
+</div>
+
+<form id="hiddenForm">
+  <input type="hidden" name="pageNum" value="<c:out value='${pageInfo.pageNum}' />"/>
+  <input type="hidden" name="type" value="<c:out value='${pageInfo.type}' />"/>
+  <input type="hidden" name="keyword" value="<c:out value='${pageInfo.keyword}' />"/>
+</form>
 
 </body>
 </html>

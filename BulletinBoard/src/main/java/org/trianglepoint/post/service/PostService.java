@@ -42,7 +42,8 @@ public interface PostService {
 	public boolean remove(Long pono);
 	
 	/**
+	 * @param pageInfo : Search condition
 	 * @return : Total page count
 	 */
-	public int getTotal();
+	public int getTotal(PageInfo pageInfo);
 }

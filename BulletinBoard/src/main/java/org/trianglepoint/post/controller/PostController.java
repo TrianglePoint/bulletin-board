@@ -59,11 +59,11 @@ public class PostController {
 
 	/**
 	 * @param model : Insert the post data list
-	 * @param pageInfo : Request number of page from client
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping("/list")
 	public void list(Model model, PageInfo pageInfo) {
-		PageListInfo pageListInfo = new PageListInfo(pageInfo, service.getTotal());
+		PageListInfo pageListInfo = new PageListInfo(pageInfo, service.getTotal(pageInfo));
 		
 		log.info(pageInfo);
 		log.info(pageListInfo);

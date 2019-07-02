@@ -32,10 +32,14 @@ public class PageInfo {
 	public PageInfo(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
+		this.type = "";
+		this.keyword = "";
 	}
 	
 	/**
 	 * @return : Search condition
+	 * 
+	 * Used on MyBatis
 	 */
 	public String[] getTypeArr() {
 		return type.split("");

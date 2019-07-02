@@ -55,7 +55,7 @@ public class PostMapperTests {
 	 * 
 	 */
 	public void testGetListPaging() {
-		mapper.getListPaging(new PageInfo()).forEach(post -> log.info(post));
+		mapper.getListWithPaging(new PageInfo()).forEach(post -> log.info(post));
 	}
 
 	/**
@@ -81,19 +81,23 @@ public class PostMapperTests {
 	 * 
 	 */
 	public void testGetTotal() {
-		log.info("POST COUNT : " + mapper.getTotal());
+		PageInfo pageInfo = new PageInfo();
+		
+		pageInfo.setType("TXW");
+		pageInfo.setKeyword("new");
+		
+		log.info("POST COUNT : " + mapper.getTotal(pageInfo));
 	}
 	
 	/**
 	 * 
 	 */
-	@Test
 	public void testSearch() {
 		PageInfo pageInfo = new PageInfo();
 		
 		pageInfo.setType("TXW");
 		pageInfo.setKeyword("new");
 		
-		mapper.getListPaging(pageInfo).forEach(post -> log.info(post));
+		mapper.getListWithPaging(pageInfo).forEach(post -> log.info(post));
 	}
 }

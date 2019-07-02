@@ -4,6 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="org.trianglepoint.post.mapper.PostMapper">
+  <sql id="searchCondition">
+    <trim prefix="(" suffix=") AND" suffixOverrides="OR">
+	  <!-- call getTypeArr() -->
+	  <foreach collection="typeArr" item="type">
+	    <trim suffix="OR">
+	      <choose>
+	        <when test="type == 'T'.toString()">
+	          title like '%'||#{keyword}||'%'
+	        </when>
+	        <when test="type == 'X'.toString()">
+	          text like '%'||#{keyword}||'%'
+	        </when>
+	        <when test="type == 'W'.toString()">
+	          writer like '%'||#{keyword}||'%'
+	        </when>
+	      </choose>
+	    </trim>
+	  </foreach>
+	</trim>
+  </sql>
+
   <insert id="insert">
     insert into tbl_post (pono, title, text, writer)
     values (seq_post.nextval, #{title}, #{text}, #{writer})
@@ -17,7 +38,7 @@
     select /*+ INDEX_DESC(tbl_post pk_post) */ * from tbl_post
   </select>
   
-  <select id="getListPaging" resultType="org.trianglepoint.post.domain.PostVO">
+  <select id="getListWithPaging" resultType="org.trianglepoint.post.domain.PostVO">
     select pono, title, text, writer, regdate, updatedate
 	from(
 	  select /*+ INDEX_DESC (tbl_post pk_post) */
@@ -25,16 +46,7 @@
 	  from 
 	    tbl_post
 	  where
-	<trim suffix="AND">
-	<trim suffix="OR" suffixOverrides="OR">
-	  <!-- call getTypeArr() -->
-	  <foreach collection="typeArr" item="type">
-	    <if test="type == 'T'.toString()">
-	      title like '%' || #{keyword} || '%'
-	    </if>
-	  </foreach>
-	</trim>
-	</trim>
+	  <include refid="searchCondition"></include>
   <![CDATA[
 	    rownum <= #{pageNum} * #{amount}
 	)
@@ -58,5 +70,10 @@
   
   <select id="getTotal" resultType="int">
     select count(*) from tbl_post
+    <where>
+      <trim suffixOverrides="AND">
+        <include refid="searchCondition"></include>
+      </trim>
+    </where>
   </select>
 </mapper>

@@ -37,7 +37,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostVO> getListPaging(PageInfo pageInfo) {
-		return mapper.getListPaging(pageInfo);
+		return mapper.getListWithPaging(pageInfo);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int getTotal() {
-		return mapper.getTotal();
+	public int getTotal(PageInfo pageInfo) {
+		return mapper.getTotal(pageInfo);
 	}
 }
