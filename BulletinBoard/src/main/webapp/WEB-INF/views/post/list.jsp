@@ -10,11 +10,44 @@
     font-weight: bold;
   }
 </style>
+
+<script src="/resources/js/common.js"></script>
 <script>
   $(document).ready(function(){
 	  
 	$('#register').on('click', function(){
-	  location.href = '/post/register';
+		location.href = '/post/register';
+	});
+	
+	$('#postList a').on('click', function(e){
+		var hiddenForm = $('#hiddenForm');
+		var input = $('<input />');
+		
+		e.preventDefault();
+
+		input.attr('type', 'hidden')
+		     .attr('name', 'pono')
+		     .attr('value', $(this).attr('href'));
+		hiddenForm.append(input);
+
+		removeEmptyOnForm('#hiddenForm');
+		
+		hiddenForm.attr('action', '/post/get');
+		hiddenForm.submit();
+	});
+	
+	$('#pageList a').on('click', function(e){
+		var hiddenForm = $('#hiddenForm');
+		var input = hiddenForm.find('input[name="pageNum"]');
+		
+		e.preventDefault();
+		
+		input.attr('value', $(this).attr('href'));
+		
+		removeEmptyOnForm('#hiddenForm');
+		
+		hiddenForm.attr('action', '/post/list');
+		hiddenForm.submit();
 	});
 	
 	$('#searchForm input[type="submit"]').on('click', function(e){
@@ -28,24 +61,12 @@
 		$('#searchForm').submit();
 	});
 	
-	$('#pageList a').on('click', function(e){
-		var hiddenForm = $('#hiddenForm');
-		var input = hiddenForm.find('input[name="pageNum"]');
-		
-		e.preventDefault();
-		
-		input.attr('value', $(this).attr('href'));
-		
-		hiddenForm.attr('action', '/post/list');
-		
-		hiddenForm.submit();
-	});
-	
   });
+
 </script>
 </head>
 <body>
-<table border="1">
+<table border="1" id="postList">
   <tr>
     <td>Number</td>
     <td>title</td>
@@ -57,7 +78,7 @@
 <c:forEach items="${list}" var="post">
   <tr>
     <td><c:out value="${post.pono}" /></td>
-    <td><a href="/post/get?pono=<c:out value='${post.pono}'></c:out>"><c:out value="${post.title}" /></a></td>
+    <td><a href="<c:out value='${post.pono}'></c:out>"><c:out value="${post.title}" /></a></td>
     <td><c:out value="${post.text}" /></td>
     <td><c:out value="${post.writer}" /></td>
     <td><fmt:formatDate value="${post.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

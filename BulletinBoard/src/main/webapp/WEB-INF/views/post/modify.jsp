@@ -4,33 +4,45 @@
     
 <%@ include file="../includes/header.jsp" %>
 <title>Modify</title>
+
+<script src="/resources/js/common.js"></script>
 <script>
   $(document).ready(function(){
-	$('#remove').on('click', function(){
-	  $('form').attr('action', '/post/remove');
 	  
-	  $('form').submit();
-	});
-	$('#list').on('click', function(){
-	  $('form').attr('action', '/post/list');
-	  $('form').attr('method', 'get');
-	  $('form').empty();
+	$('#remove').on('click', function(e){
+      e.preventDefault();
+      
+	  $('#submitForm').attr('action', '/post/remove');
 	  
-	  $('form').submit();
+	  $('#submitForm').submit();
 	});
+	
+	$('#list').on('click', function(e){
+	  var hiddenForm = $('#hiddenForm');	
+		
+	  e.preventDefault();	
+		
+	  hiddenForm.attr('action', '/post/list');
+	  hiddenForm.attr('method', 'get');
+
+	  removeEmptyOnForm('#hiddenForm');
+	  
+	  hiddenForm.submit();
+	});
+	
   });
 </script>
 </head>
 <body>
-<form action="/post/modify" method="post">
-  <input type="hidden" name="pono" value="<c:out value="${post.pono}"></c:out>" />
+<form id="submitForm" action="/post/modify" method="post">
+  <input type="hidden" name="pono" value="<c:out value='${post.pono}' />" />
   <div>
     <span>Title</span> 
-    <input type="text" name="title" value="<c:out value="${post.title}"></c:out>" />
+    <input type="text" name="title" value="<c:out value='${post.title}' />" />
   </div>
   <div>
     <span>Writer</span>
-    <input type="text" name="writer" value="<c:out value="${post.writer}"></c:out>" />
+    <input type="text" name="writer" value="<c:out value='${post.writer}' />" />
   </div>
   <div>
     <textarea rows="3" name="text"><c:out value="${post.text}" /></textarea>
@@ -41,6 +53,12 @@
     <br /><br />
     <button id="remove">Remove</button>
   </div>
+</form>
+
+<form id="hiddenForm">
+  <input type="hidden" name="pageNum" value="<c:out value='${pageInfo.pageNum}' />"/>
+  <input type="hidden" name="type" value="<c:out value='${pageInfo.type}' />"/>
+  <input type="hidden" name="keyword" value="<c:out value='${pageInfo.keyword}' />"/>
 </form>
 </body>
 </html>

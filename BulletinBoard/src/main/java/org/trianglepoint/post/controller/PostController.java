@@ -51,10 +51,12 @@ public class PostController {
 	/**
 	 * @param pono : Request number of post from client
 	 * @param model : Insert the post data
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping({"/get", "/modify"})
-	public void get(Long pono, Model model) {
+	public void get(Long pono, Model model, PageInfo pageInfo) {
 		model.addAttribute("post", service.get(pono));
+		model.addAttribute("pageInfo", pageInfo);
 	}
 
 	/**

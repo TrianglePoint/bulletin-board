@@ -4,20 +4,28 @@
 
 <%@ include file="../includes/header.jsp" %>
 <title>Get</title>
+
+<script src="/resources/js/common.js"></script>
 <script>
   $(document).ready(function(){
+	  
 	$('#modify').on('click', function(){
 	  $('form').attr('action', '/post/modify');
 	  $('#pono').val('${post.pono}');
+
+	  removeEmptyOnForm('form');
 	  
 	  $('form').submit();
 	});
+	
 	$('#list').on('click', function(){
 	  $('form').attr('action', '/post/list');
-	  $('form').empty();
+
+	  removeEmptyOnForm('form');
 	  
 	  $('form').submit();
 	});
+	
   });
 </script>
 </head>
@@ -35,10 +43,16 @@
   <td colspan="3"><c:out value="${post.text}" /></td>
 </tr>
 </table>
+
+<button id="modify">Modify</button>
+<button id="list">List</button>
+
 <form action="/" method="get">
   <input type="hidden" id="pono" name="pono" />
-  <button id="modify">Modify</button>
-  <button id="list">List</button>
+  
+  <input type="hidden" name="pageNum" value="<c:out value='${pageInfo.pageNum}' />"/>
+  <input type="hidden" name="type" value="<c:out value='${pageInfo.type}' />"/>
+  <input type="hidden" name="keyword" value="<c:out value='${pageInfo.keyword}' />"/>
 </form>
 </body>
 </html>
