@@ -27,11 +27,12 @@ public class PostController {
 	private PostService service;
 	
 	/**
-	 * Just return : "/post/register"
+	 * @param model
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping("/register")
-	public void register() {
-
+	public void register(Model model, PageInfo pageInfo) {
+		model.addAttribute("pageInfo", pageInfo);
 	}
 	
 	/**

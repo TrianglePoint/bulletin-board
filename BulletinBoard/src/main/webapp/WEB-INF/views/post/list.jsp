@@ -15,8 +15,15 @@
 <script>
   $(document).ready(function(){
 	  
-	$('#register').on('click', function(){
-		location.href = '/post/register';
+	$('#register').on('click', function(e){
+		var hiddenForm = $('#hiddenForm');
+	
+		e.preventDefault();
+
+		removeEmptyOnForm('#hiddenForm');
+		
+		hiddenForm.attr('action', '/post/register');
+		hiddenForm.submit();
 	});
 	
 	$('#postList a').on('click', function(e){
