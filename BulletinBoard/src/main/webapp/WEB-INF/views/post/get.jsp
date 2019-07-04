@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="../includes/header.jsp" %>
-<title>Get</title>
+<title><spring:message code="post.get.title" arguments="${post.title}" /></title>
 
 <script src="/resources/js/common.js"></script>
 <script>
@@ -32,11 +32,11 @@ $(document).ready(function(){
 <body>
 <table border="1">
 	<tr>
-		<th>Title</th>
+		<th><spring:message code="post.common.title" /></th>
 		<td><c:out value="${post.title}" /></td>
 	</tr>
 	<tr>
-		<th>Writer</th>
+		<th><spring:message code="post.common.writer" /></th>
 		<td><c:out value="${post.writer}" /></td>
 	</tr>
 	<tr>
@@ -44,8 +44,8 @@ $(document).ready(function(){
 	</tr>
 </table>
 
-<button id="modify">Modify</button>
-<button id="list">List</button>
+<button id="modify"><spring:message code="post.common.modify" /></button>
+<button id="list"><spring:message code="post.common.list" /></button>
 
 <form action="/" method="get">
 	<input type="hidden" id="pono" name="pono" />

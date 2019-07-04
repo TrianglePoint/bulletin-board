@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <%@ include file="../includes/header.jsp" %>
-<title>Modify</title>
+<title><spring:message code="post.modify.title" /></title>
 
 <script src="/resources/js/common.js"></script>
 <script>
@@ -37,21 +37,21 @@ $(document).ready(function(){
 <form id="submitForm" action="/post/modify" method="post">
 	<input type="hidden" name="pono" value="<c:out value='${post.pono}' />" />
 	<div>
-		<span>Title</span>
+		<span><spring:message code="post.common.title" /></span>
 		<input type="text" name="title" value="<c:out value='${post.title}' />" />
 	</div>
 	<div>
-		<span>Writer</span>
+		<span><spring:message code="post.common.writer" /></span>
 		<input type="text" name="writer" value="<c:out value='${post.writer}' />" />
 	</div>
 	<div>
 		<textarea rows="3" name="text"><c:out value="${post.text}" /></textarea>
 	</div>
 	<div>
-		<input type="submit" value="Submit" />
-		<button id="list">List</button>
+		<input type="submit" value="<spring:message code='post.common.modify' />" />
+		<button id="list"><spring:message code="post.common.list" /></button>
 		<br /><br />
-		<button id="remove">Remove</button>
+		<button id="remove"><spring:message code="post.common.remove" /></button>
 	</div>
 </form>
 

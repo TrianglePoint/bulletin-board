@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ include file="../includes/header.jsp" %>
-<title>List</title>
+<title><spring:message code="post.list.title" /></title>
 <style>
 	.selected{
 		font-weight: bold;
@@ -74,17 +74,17 @@ $(document).ready(function(){
 <body>
 <table border="1" id="postList">
 	<tr>
-		<td>Number</td>
-		<td>title</td>
-		<td>text</td>
-		<td>writer</td>
-		<td>regDate</td>
-		<td>updateDate</td>
+		<td><spring:message code="post.common.number" /></td>
+		<td><spring:message code="post.common.title" /></td>
+		<td><spring:message code="post.common.text" /></td>
+		<td><spring:message code="post.common.writer" /></td>
+		<td><spring:message code="post.common.regDate" /></td>
+		<td><spring:message code="post.common.updateDate" /></td>
 	</tr>
 <c:forEach items="${list}" var="post">
 	<tr>
 		<td><c:out value="${post.pono}" /></td>
-		<td><a href="<c:out value='${post.pono}'></c:out>"><c:out value="${post.title}" /></a></td>
+		<td><a href="<c:out value='${post.pono}' />"><c:out value="${post.title}" /></a></td>
 		<td><c:out value="${post.text}" /></td>
 		<td><c:out value="${post.writer}" /></td>
 		<td><fmt:formatDate value="${post.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -92,19 +92,23 @@ $(document).ready(function(){
 	</tr>
 </c:forEach>
 </table>
-<button id="register">Register</button>
+<button id="register"><spring:message code="post.common.register" /></button>
 
 <!-- Page list -->
 <div id="pageList">
 	<c:if test="${pageListInfo.previous}">
-		<a href="<c:out value='${pageListInfo.startPage - 1}'></c:out>">Previous</a>
+		<a href="<c:out value='${pageListInfo.startPage - 1}' />">
+			<spring:message code="post.common.previous" />
+		</a>
 	</c:if>
 	<c:forEach var="page" begin="${pageListInfo.startPage}" end="${pageListInfo.endPage}">
 		<a class="${pageInfo.pageNum == page ? 'selected' : ''}"
-			href="<c:out value='${page}'></c:out>">${page}</a> 
+			href="<c:out value='${page}' />">${page}</a> 
 	</c:forEach>
 	<c:if test="${pageListInfo.next}">
-		<a href="<c:out value='${pageListInfo.endPage + 1}'></c:out>">Next</a>
+		<a href="<c:out value='${pageListInfo.endPage + 1}' />">
+			<spring:message code="post.common.next" />
+		</a>
 	</c:if>
 </div>
 
@@ -112,23 +116,26 @@ $(document).ready(function(){
 	<form id="searchForm" action="/post/list">
 		<select name="type">
 			<option value="T" <c:out value="${pageInfo.type == 'T' ? 'selected' : ''}" />>
-				Title
+				<spring:message code="post.common.title" />
 			</option>
 			<option value="X" <c:out value="${pageInfo.type == 'X' ? 'selected' : ''}" />>
-				Text
+				<spring:message code="post.common.text" />
 			</option>
 			<option value="W" <c:out value="${pageInfo.type == 'W' ? 'selected' : ''}" />>
-				Writer
+				<spring:message code="post.common.writer" />
 			</option>
 			<option value="TX" <c:out value="${pageInfo.type == 'TX' ? 'selected' : ''}" />>
-				Title + Text
+				<spring:message code="post.common.title" /> + 
+				<spring:message code="post.common.text" />
 			</option>
 			<option value="TXW" <c:out value="${pageInfo.type == 'TXW' ? 'selected' : ''}" />>
-				Title + Text + Writer
+				<spring:message code="post.common.title" /> + 
+				<spring:message code="post.common.text" /> + 
+				<spring:message code="post.common.writer" />
 			</option>
 		</select>
 		<input type="text" name="keyword" value="<c:out value='${pageInfo.keyword}' />"/>
-		<input type="submit" value="Search" />
+		<input type="submit" value="<spring:message code='post.common.search' />" />
 	</form>
 </div>
 
