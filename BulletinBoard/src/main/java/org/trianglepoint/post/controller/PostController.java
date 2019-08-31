@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.trianglepoint.post.domain.PageInfo;
+import org.trianglepoint.post.domain.PageListInfo;
 import org.trianglepoint.post.domain.PostVO;
 import org.trianglepoint.post.service.PostService;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/post/*")
+@Log4j
 public class PostController {
 	
 	/**
@@ -23,11 +27,12 @@ public class PostController {
 	private PostService service;
 	
 	/**
-	 * Just return : "/post/register"
+	 * @param model
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping("/register")
-	public void register() {
-
+	public void register(Model model, PageInfo pageInfo) {
+		model.addAttribute("pageInfo", pageInfo);
 	}
 	
 	/**
@@ -47,18 +52,28 @@ public class PostController {
 	/**
 	 * @param pono : Request number of post from client
 	 * @param model : Insert the post data
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping({"/get", "/modify"})
-	public void get(Long pono, Model model) {
+	public void get(Long pono, Model model, PageInfo pageInfo) {
 		model.addAttribute("post", service.get(pono));
+		model.addAttribute("pageInfo", pageInfo);
 	}
-	
+
 	/**
 	 * @param model : Insert the post data list
+	 * @param pageInfo : Request number of page from client, search condition
 	 */
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list", service.getList());
+	public void list(Model model, PageInfo pageInfo) {
+		PageListInfo pageListInfo = new PageListInfo(pageInfo, service.getTotal(pageInfo));
+		
+		log.info(pageInfo);
+		log.info(pageListInfo);
+		
+		model.addAttribute("list", service.getListPaging(pageInfo));
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("pageListInfo", pageListInfo);
 	}
 	
 	/**

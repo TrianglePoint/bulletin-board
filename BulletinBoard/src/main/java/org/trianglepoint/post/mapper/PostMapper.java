@@ -2,6 +2,7 @@ package org.trianglepoint.post.mapper;
 
 import java.util.List;
 
+import org.trianglepoint.post.domain.PageInfo;
 import org.trianglepoint.post.domain.PostVO;
 
 public interface PostMapper {
@@ -21,6 +22,12 @@ public interface PostMapper {
 	 * @return : Post data list
 	 */
 	public List<PostVO> getList();
+
+	/**
+	 * @param pageInfo : Request number of page from client
+	 * @return : Post data list
+	 */
+	public List<PostVO> getListWithPaging(PageInfo pageInfo);
 	
 	/**
 	 * @param post : Modified post data from client
@@ -33,4 +40,10 @@ public interface PostMapper {
 	 * @return : How many change on DB?
 	 */
 	public int delete(Long pono);
+	
+	/**
+	 * @param pageInfo : Search condition
+	 * @return : Total page count
+	 */
+	public int getTotal(PageInfo pageInfo);
 }
